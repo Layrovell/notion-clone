@@ -6,6 +6,7 @@ import { ChevronsLeft, MenuIcon } from 'lucide-react';
 import { useMediaQuery } from 'usehooks-ts';
 
 import { cn } from '@/lib/utils';
+import { UserItem } from './user-item';
 
 const Navigation: React.FC = () => {
   const pathname = usePathname();
@@ -91,7 +92,7 @@ const Navigation: React.FC = () => {
       <aside
         ref={sidebarRef}
         className={cn(
-          'group/sidebar h-full bg-secondary overflow-y-auto relative flex w-60 flex-col z-[999999]',
+          'group/sidebar h-full bg-secondary overflow-y-auto relative flex w-60 flex-col z-[99999]',
           isResetting && 'transition-all ease-in-out duration-300',
           isMobile && 'w-0'
         )}
@@ -108,7 +109,7 @@ const Navigation: React.FC = () => {
         </div>
 
         <div>
-          <p>Action items</p>
+          <UserItem />
         </div>
 
         <div>
