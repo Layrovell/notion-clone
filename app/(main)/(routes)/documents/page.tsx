@@ -15,7 +15,7 @@ const DocumentsPage: React.FC = () => {
   const create = useMutation(api.documents.create);
 
   const onCreate = () => {
-    const promise = create({ title: 'Untitled document' });
+    const promise = create({ title: 'Untitled' });
 
     toast.promise(promise, {
       loading: 'Creating document...',

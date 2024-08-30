@@ -1,7 +1,14 @@
 'use client';
 
-import { ChevronRight, ChevronsDown, LucideIcon } from 'lucide-react';
+import { useRouter } from 'next/navigation';
+import { ChevronRight, ChevronDown, LucideIcon, Plus } from 'lucide-react';
+import { toast } from 'sonner';
+
+import { useMutation } from 'convex/react';
 import { Id } from '@/convex/_generated/dataModel';
+import { api } from '@/convex/_generated/api';
+
+import { Skeleton } from '@/components/ui/skeleton';
 
 import { cn } from '@/lib/utils';
 
@@ -30,14 +37,45 @@ const Item: React.FC<ItemProps> = ({
   isSearch,
   level,
 }) => {
-  const ChevronIcon = expanded ? ChevronsDown : ChevronRight;
+  const router = useRouter();
+
+  const create = useMutation(api.documents.create);
+
+  const handleExpand = (ev: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    ev.stopPropagation();
+    onExpand?.();
+  };
+
+  const onCreate = (ev: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    ev.stopPropagation();
+
+    if (!id) {
+      return;
+    }
+
+    const promise = create({ title: 'Untitled', parentDocument: id }).then((documentId) => {
+      if (!expanded) {
+        onExpand?.();
+      }
+
+      // router.push(`/documents/${documentId}`);
+    });
+
+    toast.promise(promise, {
+      loading: 'Creating document...',
+      success: 'Document created!',
+      error: 'Failed to create document',
+    });
+  };
+
+  const ChevronIcon = expanded ? ChevronDown : ChevronRight;
 
   return (
     <div
       onClick={onClick}
       role={'button'}
       style={{
-        paddingLeft: level ? `{${level * 12 + 12}px}` : '12px',
+        paddingLeft: level ? `${level * 12 + 25}px` : '12px',
       }}
       className={cn(
         'group min-h-[28px] text-sm py-1 pr-3 w-full hover:bg-primary/5 flex items-center text-muted-foreground font-medium',
@@ -46,7 +84,7 @@ const Item: React.FC<ItemProps> = ({
     >
       {!!id && (
         <div
-          onClick={() => {}}
+          onClick={handleExpand}
           role={'button'}
           className='h-full rounded-sm hover:bg-neutral-300 dark:bg-neutral-600 mr-1'
         >
@@ -67,8 +105,36 @@ const Item: React.FC<ItemProps> = ({
           <span className='text-xs'>⌘</span>K
         </kbd>
       )}
+
+      {!!id && (
+        <div role={'button'} onClick={onCreate} className='ml-auto flex items-center gap-x-2'>
+          <div className='opacity-0 group-hover:opacity-100 h-full ml-auto rounded-sm hover:bg-neutral-300 dark:hover:bg-neutral-600'>
+            <Plus className='h-4 w-4 text-muted-foreground' />
+          </div>
+        </div>
+      )}
     </div>
   );
 };
 
-export { Item };
+interface ItemSkeletonProps {
+  level?: number;
+}
+
+const ItemSkeleton: React.FC<ItemSkeletonProps> = ({ level }) => {
+  return (
+    <div
+      style={{
+        paddingLeft: level ? `${(level * 12) + 25}px` : '12px',
+      }}
+      className='flex gap-x-2 py-[3px]'
+    >
+      <Skeleton className='h-4 w-4' />
+      <Skeleton className='h-4 w-[30%]' />
+    </div>
+  );
+};
+
+// Item.Skeleton = ItemSkeleton;
+
+export { Item, ItemSkeleton };

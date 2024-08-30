@@ -4,18 +4,21 @@ import { usePathname } from 'next/navigation';
 import { ElementRef, useEffect, useRef, useState } from 'react';
 import { ChevronsLeft, MenuIcon, PlusCircle, Search, Settings } from 'lucide-react';
 import { useMediaQuery } from 'usehooks-ts';
-import { useMutation, useQuery } from 'convex/react';
-import { api } from '@/convex/_generated/api';
 import { toast } from 'sonner';
 
-import { cn } from '@/lib/utils';
+import { useMutation } from 'convex/react';
+import { api } from '@/convex/_generated/api';
+
 import { UserItem } from './user-item';
 import { Item } from './item';
+import { DocumentList } from './document-list';
+
+import { cn } from '@/lib/utils';
 
 const Navigation: React.FC = () => {
   const pathname = usePathname();
   const isMobile = useMediaQuery('(max-width: 768px)');
-  const documents = useQuery(api.documents.get);
+
   const create = useMutation(api.documents.create);
 
   const isResizingRef = useRef(false);
@@ -94,7 +97,7 @@ const Navigation: React.FC = () => {
   };
 
   const handleCreate = () => {
-    const promise = create({ title: 'Untitled document' });
+    const promise = create({ title: 'Untitled' });
 
     toast.promise(promise, {
       loading: 'Creating document...',
@@ -132,11 +135,7 @@ const Navigation: React.FC = () => {
         </div>
 
         <div className='mt-4'>
-          {documents?.map((document) => (
-            <div key={document._id}>
-              <p>{document.title}</p>
-            </div>
-          ))}
+          <DocumentList />
         </div>
 
         <div
