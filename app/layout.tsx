@@ -51,7 +51,3 @@ export default function RootLayout({
     </html>
   );
 }
-
-
-// npm convex dev
-// npm run dev
