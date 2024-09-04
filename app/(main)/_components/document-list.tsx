@@ -8,7 +8,7 @@ import { api } from '@/convex/_generated/api';
 import { Doc, Id } from '@/convex/_generated/dataModel';
 import { useQuery } from 'convex/react';
 
-import { Item, ItemSkeleton } from './item';
+import { Item } from './item';
 
 import { cn } from '@/lib/utils';
 
@@ -42,12 +42,12 @@ const DocumentList: React.FC<DocumentListProps> = ({ parentDocumentId, level = 0
   if (documents === undefined) {
     return (
       <>
-        <ItemSkeleton level={level} />
+        <Item.Skeleton level={level} />
 
         {level === 0 && (
           <>
-            <ItemSkeleton level={level} />
-            <ItemSkeleton level={level} />
+            <Item.Skeleton level={level} />
+            <Item.Skeleton level={level} />
           </>
         )}
       </>

@@ -33,7 +33,7 @@ interface ItemProps {
   icon: LucideIcon;
 }
 
-const Item: React.FC<ItemProps> = ({
+const Item = ({
   id,
   label,
   onClick,
@@ -44,7 +44,7 @@ const Item: React.FC<ItemProps> = ({
   onExpand,
   isSearch,
   level,
-}) => {
+}: ItemProps) => {
   const { user } = useUser();
   const router = useRouter();
 
@@ -173,7 +173,7 @@ interface ItemSkeletonProps {
   level?: number;
 }
 
-const ItemSkeleton: React.FC<ItemSkeletonProps> = ({ level }) => {
+Item.Skeleton = function ItemSkeleton({ level }: ItemSkeletonProps) {
   return (
     <div
       style={{
@@ -187,6 +187,4 @@ const ItemSkeleton: React.FC<ItemSkeletonProps> = ({ level }) => {
   );
 };
 
-// Item.Skeleton = ItemSkeleton;
-
-export { Item, ItemSkeleton };
+export { Item };
