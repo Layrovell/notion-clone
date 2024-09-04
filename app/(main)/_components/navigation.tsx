@@ -17,12 +17,14 @@ import { Item } from './item';
 import { DocumentList } from './document-list';
 
 import { cn } from '@/lib/utils';
+import { useSettings } from '@/hooks/use-settings';
 
 const Navigation: React.FC = () => {
   const pathname = usePathname();
   const isMobile = useMediaQuery('(max-width: 768px)');
 
   const search = useSearch();
+  const settings = useSettings();
 
   const create = useMutation(api.documents.create);
 
@@ -135,7 +137,7 @@ const Navigation: React.FC = () => {
         <div>
           <UserItem />
           <Item onClick={search.onOpen} label={'Search'} icon={Search} isSearch />
-          <Item onClick={() => {}} label={'Settings'} icon={Settings} />
+          <Item onClick={settings.onOpen} label={'Settings'} icon={Settings} />
           <Item onClick={handleCreate} label={'New page'} icon={PlusCircle} />
         </div>
 
