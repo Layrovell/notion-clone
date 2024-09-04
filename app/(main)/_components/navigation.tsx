@@ -177,7 +177,13 @@ const Navigation: React.FC = () => {
           <Navbar isCollapsed={isCollapsed} onResetWidth={resetWidth} />
         ) : (
           <nav className='bg-transparent px-3 py-2 w-full'>
-            {isCollapsed && <MenuIcon role={'button'} onClick={resetWidth} className='w-6 h-6 text-muted-foreground' />}
+            {isCollapsed && (
+              <MenuIcon
+                role={'button'}
+                onClick={resetWidth}
+                className='w-6 h-6 text-muted-foreground'
+              />
+            )}
           </nav>
         )}
       </div>
