@@ -10,6 +10,7 @@ import { api } from '@/convex/_generated/api';
 
 import { IconPicker } from './icon-picker';
 import { Button } from './ui/button';
+import { useCoverImage } from '@/hooks/use-cover-image';
 
 interface ToolbarProps {
   initialData: Doc<'documents'>;
@@ -24,6 +25,8 @@ export const Toolbar = ({ initialData, preview }: ToolbarProps) => {
 
   const update = useMutation(api.documents.updateDocument);
   const removeIcon = useMutation(api.documents.removeIcon);
+
+  const coverImage = useCoverImage();
 
   const enableInput = () => {
     if (preview) {
@@ -70,7 +73,7 @@ export const Toolbar = ({ initialData, preview }: ToolbarProps) => {
   }
 
   return (
-    <div className='pl-[54px] group relative'>
+    <div className='group relative'>
       {!!initialData.icon && !preview && (
         <div className='flex items-center gap-x-2 group/icon pt-6'>
           <IconPicker onChange={onSelectIcon}>
@@ -101,7 +104,12 @@ export const Toolbar = ({ initialData, preview }: ToolbarProps) => {
         )}
 
         {!initialData.coverImage && !preview && (
-          <Button onClick={() => {}} variant='outline' size='sm' className='text-xs text-muted-foreground'>
+          <Button
+            onClick={coverImage.onOpen}
+            variant='outline'
+            size='sm'
+            className='text-xs text-muted-foreground'
+          >
             <ImageIcon className='h-4 w-4 mr-2' />
             Add cover
           </Button>
