@@ -77,7 +77,7 @@ const DocumentList: React.FC<DocumentListProps> = ({ parentDocumentId, level = 0
             label={document.title}
             icon={FileIcon}
             documentIcon={document.icon}
-            active={params.id === document._id}
+            active={params.documentId === document._id}
             expanded={expanded[document._id]}
             onExpand={() => onExpand(document._id)}
             level={level}

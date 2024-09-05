@@ -7,8 +7,8 @@ import { useMutation } from 'convex/react';
 import { api } from '@/convex/_generated/api';
 
 import { useCoverImage } from '@/hooks/use-cover-image';
-import { Dialog, DialogContent, DialogHeader } from '../ui/dialog';
-import { SingleImageDropzone } from '../single-image-dropzone';
+import { Dialog, DialogContent, DialogHeader } from '@/components/ui/dialog';
+import { SingleImageDropzone } from '@/components/single-image-dropzone';
 
 import { useEdgeStore } from '@/lib/edgestore';
 import { Id } from '@/convex/_generated/dataModel';

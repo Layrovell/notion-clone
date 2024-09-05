@@ -8,8 +8,8 @@ import { useMutation } from 'convex/react';
 import { Doc } from '@/convex/_generated/dataModel';
 import { api } from '@/convex/_generated/api';
 
-import { IconPicker } from './icon-picker';
-import { Button } from './ui/button';
+import { IconPicker } from '@/components/icon-picker';
+import { Button } from '@/components/ui/button';
 import { useCoverImage } from '@/hooks/use-cover-image';
 
 interface ToolbarProps {

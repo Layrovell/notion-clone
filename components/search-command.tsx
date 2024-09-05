@@ -9,7 +9,7 @@ import { useQuery } from 'convex/react';
 import { api } from '@/convex/_generated/api';
 
 import { useSearch } from '@/hooks/use-search';
-import { CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from './ui/command';
+import { CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from '@/components/ui/command';
 
 const SearchCommand: React.FC = () => {
   const { user } = useUser();

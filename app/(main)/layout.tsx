@@ -26,7 +26,7 @@ const MainLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     <div className='h-full flex dark:bg-[#1f1f1f]'>
       <Navigation />
 
-      <main className='flex-1 h-full overflow-y-auto'>
+      <main className='flex-1 h-full overflow-y-auto px-10 md:px-0'>
         <SearchCommand />
         {children}
       </main>

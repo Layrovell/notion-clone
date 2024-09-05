@@ -1,9 +1,9 @@
 'use client';
 
 import { useSettings } from '@/hooks/use-settings';
-import { Dialog, DialogContent, DialogHeader } from '../ui/dialog';
-import { Label } from '../ui/label';
-import { ModeToggle } from '../mode-toggle';
+import { Dialog, DialogContent, DialogHeader } from '@/components/ui/dialog';
+import { Label } from '@/components/ui/label';
+import { ModeToggle } from '@/components/mode-toggle';
 
 const SettingsModal: React.FC = () => {
   const settings = useSettings();

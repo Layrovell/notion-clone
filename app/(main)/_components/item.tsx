@@ -58,7 +58,8 @@ const Item = ({
       return;
     }
 
-    const promise = archive({ id });
+    const promise = archive({ id })
+      .then(() => router.push(`/documents`))
 
     toast.promise(promise, {
       loading: 'Archiving document...',
@@ -84,7 +85,7 @@ const Item = ({
         onExpand?.();
       }
 
-      // router.push(`/documents/${documentId}`);
+      router.push(`/documents/${documentId}`);
     });
 
     toast.promise(promise, {
@@ -105,7 +106,7 @@ const Item = ({
       }}
       className={cn(
         'group min-h-[28px] text-sm py-1 pr-3 w-full hover:bg-primary/5 flex items-center text-muted-foreground font-medium',
-        active && 'bg-primary/5 text-primary'
+        active && 'bg-primary/5 text-primary font-semibold',
       )}
     >
       {!!id && (

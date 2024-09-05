@@ -3,7 +3,7 @@
 import { useTheme } from 'next-themes';
 import EmojiPicker, { Theme } from 'emoji-picker-react';
 
-import { Popover, PopoverContent, PopoverTrigger } from './ui/popover';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 
 interface IconPickerProps {
   onChange: (icon: string) => void;
