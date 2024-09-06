@@ -57,11 +57,11 @@ const DocumentIdPage = ({ params }: DocumentIdPageProps) => {
 
   return (
     <div className='pb-40'>
-      <Cover url={document.coverImage} />
+      <Cover preview url={document.coverImage} />
 
       <div className='md:max-w-3xl lg:max-w-4xl mx-auto px-10'>
-        <Toolbar initialData={document} />
-        <Editor initialContent={document.content} onChange={onChange} />
+        <Toolbar preview initialData={document} />
+        <Editor editable={false} initialContent={document.content} onChange={onChange} />
       </div>
     </div>
   );
