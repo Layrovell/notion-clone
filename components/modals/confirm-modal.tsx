@@ -31,7 +31,7 @@ const ConfirmModal: React.FC<ConfirmModalProps> = ({ children, onConfirm }) => {
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle>Are you sure?</AlertDialogTitle>
-          <AlertDialogDescription>Ths action can not be undone</AlertDialogDescription>
+          <AlertDialogDescription>This action can not be undone</AlertDialogDescription>
         </AlertDialogHeader>
 
         <AlertDialogFooter>
@@ -43,4 +43,4 @@ const ConfirmModal: React.FC<ConfirmModalProps> = ({ children, onConfirm }) => {
   );
 };
 
-export { ConfirmModal };
+export { ConfirmModal, type ConfirmModalProps };
